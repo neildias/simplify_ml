@@ -76,7 +76,6 @@ def get_categorical_cols(df: pd.DataFrame):
   return [key for key in df.columns if df[key].dtypes == 'object']
 
 
-
 def convert_obj_to_unordered_cat_nums(df: pd.DataFrame,
                                       cols: str):
   """
@@ -235,7 +234,7 @@ def build_model(regression_fn,
                 names_of_x_cols: list,
                 dataset: pd.DataFrame,
                 test_frac: float = 0.2,
-                preprocess_fn= None,
+                preprocess_fn=None,
                 show_plot_Y: bool = False,
                 show_plot_scatter: bool = False):
   """
@@ -264,7 +263,7 @@ def build_model(regression_fn,
   print("Training_score : ", model.score(x_train, y_train))
   print("Test_score : ", r2_score(y_test, y_pred))
   
-  if show_plot_Y == True:
+  if show_plot_Y is True:
     fig, ax = plt.subplots(figsize=(12, 8))
     
     plt.plot(y_pred, label='Predicted')
@@ -275,7 +274,7 @@ def build_model(regression_fn,
     plt.legend()
     plt.show()
     
-  if show_plot_scatter == True:
+  if show_plot_scatter is True:
     fig, ax = plt.subplots(figsize=(12, 8))
     
     plt.scatter(x_test, y_test)
@@ -314,8 +313,9 @@ def find_nhighest_val(df: pd.DataFrame, col: str, how_many_values: int):
   :return pd.DataFrame
   """
   temp_df = df.copy()
-  highest_df = temp_df  # this equated to temp_df just to initialise
-                        # the variable to a comparable col_named dataframe.
+  # this equated to temp_df just to initialise
+  # the variable to a comparable col_named dataframe.
+  highest_df = temp_df
   
   for i in range(how_many_values):
     current_highest = temp_df[col] == temp_df[col].max()
@@ -341,7 +341,11 @@ def find_nlowest_val(df: pd.DataFrame, col: str, how_many_values: int):
   :return pd.DataFrame
   """
   temp_df = df.copy()
-  lowest_df = temp_df  # this equated to temp_df just to initialise the variable to a comparable col_named dataframe. Useful in if assessment
+  
+  # this equated to temp_df just to initialise the variable
+  # to a comparable col_named dataframe. Useful in if assessment
+  lowest_df = temp_df
+  
   for i in range(how_many_values):
     current_lowest = temp_df[col] == temp_df[col].min()
     print(temp_df[current_lowest][col])
